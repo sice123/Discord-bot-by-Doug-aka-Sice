@@ -9,14 +9,6 @@ const fs = require('fs');
 
 const queue = new Map();
 
-const config = require('./config.json');
-const search = require('youtube-search');
-const opts = {
-    maxResults: 25,
-    key: config.YOUTUBE_API,
-    type: 'video'
-};
- 
 client.commands = new Discord.Collection();
 
 const ytdl = require ('ytdl-core');
@@ -74,7 +66,7 @@ if(command === 'corona'){
 if(command === 'almog'){
   client.commands.get('almog').execute(message, args);//9
 }
-//WHO'S THE KILLER
+//WHO'S THE KILLER - a cool game 
 if(command === '1'){
   client.commands.get('1').execute(message, args);//10
 }
@@ -146,7 +138,7 @@ if(command === 'search'){
 
 
 
- 
+ //need to finish so much stuff HMU Doug4191
 
 
 
