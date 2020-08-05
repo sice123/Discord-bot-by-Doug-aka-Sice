@@ -1,0 +1,30 @@
+{
+  "name": "lil-uzi-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sice,Doug",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "dateformat": "^3.0.3",
+    "discord.js": "^12.2.0",
+    "eslint": "^7.6.0",
+    "f": "^1.4.0",
+    "form-data": "^3.0.0",
+    "moment": "^2.27.0",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.0",
+    "opusscript": "0.0.7",
+    "request": "^2.88.2",
+    "youtube-api": "^3.0.0",
+    "youtube-search": "^1.1.4",
+    "ytdl-core": "^2.1.7"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
