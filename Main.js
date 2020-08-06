@@ -414,4 +414,4 @@ function play(guild, song) {
 
 });
 
-client.login('NzIzMTQ0NjYxMzI5Mzc5MzU5.XutW8g.gkZlqBiSVjrEeTxEEzvYchQ9B8Q');
+client.login('token');
