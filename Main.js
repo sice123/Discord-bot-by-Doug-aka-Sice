@@ -9,6 +9,14 @@ const fs = require('fs');
 
 const queue = new Map();
 
+const config = require('./config.json');
+const search = require('youtube-search');
+const opts = {
+    maxResults: 25,
+    key: config.YOUTUBE_API,
+    type: 'video'
+};
+ 
 client.commands = new Discord.Collection();
 
 const ytdl = require ('ytdl-core');
@@ -66,7 +74,7 @@ if(command === 'corona'){
 if(command === 'almog'){
   client.commands.get('almog').execute(message, args);//9
 }
-//WHO'S THE KILLER - a cool game 
+//WHO'S THE KILLER
 if(command === '1'){
   client.commands.get('1').execute(message, args);//10
 }
@@ -135,10 +143,19 @@ if(command === ''){
 if(command === 'search'){
   client.commands.get('search').execute(message, args);
 }
+if(command === 'leave'){
+  client.commands.get('leave').execute(message, args);
+}
+if(command === 'join'){
+  client.commands.get('join').execute(message, args);
+}
+if(command === 'lyrics'){
+  client.commands.get('lyrics').execute(message, args);
+}
 
 
 
- //need to finish so much stuff HMU Doug4191
+ 
 
 
 
@@ -361,7 +378,9 @@ function stop(message, serverQueue) {
 }
 
 function play(guild, song) {
+  const voiceChannel = message.member.voice.channel;
   const serverQueue = queue.get(guild.id);
+  const emoji = guild.emojis.cache.first(); 
   if (!song) {
     serverQueue.voiceChannel.leave();
     queue.delete(guild.id);
@@ -369,6 +388,7 @@ function play(guild, song) {
   }
 
   const dispatcher = serverQueue.connection
+  
     .play(ytdl(song.url))
     .on("finish", () => {
       serverQueue.songs.shift();
@@ -376,11 +396,17 @@ function play(guild, song) {
     })
     .on("error", error => console.error(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  const Embed = new Discord.MessageEmbed();
-  Embed.addField(`**${song.title}**`,[
-    `Started Playing ${song.title}`
-  ])
-  message.channel.send(Embed);
+    const embed = new Discord.MessageEmbed()
+    embed.setTitle('Song Info')
+    embed.setColor(`RED`)
+    embed.addField(`# ${'🎵'} :`, [
+      `**- Song name:** ${song.title}`,
+      `**- Song Url:** [Link](${song.video_url})`,
+      `**- Voice channel:** ${voiceChannel.name}`,
+      `**- Requested By:** ${message.author.tag}`
+    ])
+    .setTimestamp()
+     return message.channel.send(embed);
 }
 
 
@@ -388,4 +414,4 @@ function play(guild, song) {
 
 });
 
-client.login('NzIzMTQ0NjYxMzI5Mzc5MzU5.Xxc9dg.PscHTItU39wsbZCFhpGU_008s2E');
+client.login('NzIzMTQ0NjYxMzI5Mzc5MzU5.XutW8g.gkZlqBiSVjrEeTxEEzvYchQ9B8Q');
